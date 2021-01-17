@@ -5,7 +5,16 @@
 // {/* <option value="hamster">Hamster</option>     <== hint for list of options in dropdown */}
 // Write 2 functions to carry out responsibilities: one for establishing defaults (item 1 above), one for responding to user input 
 
-// Start to write INIT function to get dropdown menu populated
+
+// Create DEMOGRAPHICDATA function to get the metadata for given patient ID
+function DemographicData() {
+    d3.json("samples.json").then((data) => {
+        var metadata = data.metadata;
+        console.log(metadata);
+    })
+}
+
+// Create INIT function to populate dropdown menu with patient IDs (Patient IDs taken from "names" column in samples.json)
 function init() {
     // get nested data -- chaining!
     d3.json("samples.json").then(function(data) {
