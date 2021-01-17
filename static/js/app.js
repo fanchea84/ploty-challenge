@@ -9,6 +9,8 @@ function DemographicData(id) {
         var result =  demographicmetadata.filter(meta => meta.id.toString() ===id)[0];
         // Select the Demographic Panel from INDEX.HTML so you can put the selected Patient's demographic data in there
         var demoPanel = d3.select("#sample-metadata");
+        // Clear the Demographic Panel, to enable input of new Patient ID
+        demoPanel.html("");
     })
 }
 // Call DEMOGRAPHICDATA function
