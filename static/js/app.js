@@ -1,46 +1,49 @@
-// Create DEMOGRAPHICDATA function to get the metadata for given patient ID
+
+// -----------------------------------------------------------------------------------------------------
+// Create DEMOGRAPHICDATA function to collect and display the metadata for a given Patient ID.
+// -----------------------------------------------------------------------------------------------------
 function DemographicData(id) {
-    // read SAMPLES.JSON file to get its data
-    d3.json("samples.json").then((data)=> { 
-        // Get metadata from SAMPLES.JSON. We'll use this info for the Demographic Panel visualization.
-        var demographicmetadata = data.metadata;
-        console.log(demographicmetadata);
-        // Filter the Demographic Metadata for specific Patient ID
-        var result =  demographicmetadata.filter(meta => meta.id.toString() ===id)[0];
-        console.log(result);
-        // Select the Demographic Panel from INDEX.HTML so you can put the selected Patient's demographic data in there
-        var demoPanel = d3.select("#sample-metadata");
-        // Clear the Demographic Panel, to enable input of new Patient ID
-        demoPanel.html("");
-        // Collect the Demographic Metadata for the selected Patient ID, and display it in the Demographic Panel
-        Object.entries(result).forEach((key) => {
-            demoPanel.append("h5").text(key[0].toUpperCase() + ": " + key[1] +"\n");
+        // Read the SAMPLES.JSON file into D3 so you can work with its data to build tables & visualizations.
+        d3.json("samples.json").then((data)=> {
+            // Get metadata from SAMPLES.JSON. We'll use this info for the Demographic Panel visualization.
+            var metadata = data.metadata;
+            console.log(metadata);
+            // Filter the Demographic Metadata for a specific Patient ID (starting with the first Patient ID).
+            var result = metadata.filter(meta => meta.id.toString() === id)[0];
+            console.log(result);
+            // Select the Demographic Panel from INDEX.HTML so you can put the selected Patient's demographic data in there.
+            var demographicInfo = d3.select("#sample-metadata");
+            // Clear the Demographic Panel, to enable input of the specified Patient ID.
+            demographicInfo.html("");
+            // Collect the Demographic Metadata for the selected Patient ID, and display it in the Demographic Panel.
+            Object.entries(result).forEach((key) => {   
+                demographicInfo.append("h5").text(key[0].toUpperCase() + ": " + key[1] + "\n");    
+            });
         });
-    });
-}
-// Call DEMOGRAPHICDATA function
-DemographicData();
+    }
 
-
-
-
-
+// -----------------------------------------------------------------------------------------------------
 // Create INIT function to populate dropdown menu with patient IDs (Patient IDs taken from "names" column in samples.json)
+// -----------------------------------------------------------------------------------------------------
 function init() {
-    // get nested data -- chaining!
+    // Read the SAMPLES.JSON file into D3 so you can work with its data to build tables & visualizations.
     d3.json("samples.json").then(function(data) {
         console.log(data.names);
-        var dropdownlist = d3.select("#selDataset"); // Use D3 to select the table body from INDEX.HTML
+        // Use D3 to select the table body from INDEX.HTML
+        var dropdownlist = d3.select("#selDataset"); 
         data.names.forEach(name => {
             dropdownlist.append("option").text(name);
         });
-        // Call the DEMOGRAPHICDATA and CREATEPLOTS functions to display the data and plots on the webpage, with default data for first Patient ID in the SAMPLES.JSON dataset
+        // Call the DEMOGRAPHICDATA and CREATEPLOTS functions to display the data and plots on the webpage.
         DemographicData(data.names[0]);
     });
 }
-// Call INIT function
+// Call INIT function to initialize data on the page.
 init(); 
 
+// -----------------------------------------------------------------------------------------------------
+// NOTES AND HINTS FROM CLASS, TUTORING, & SELF-GUIDED STUDY TIME.
+// -----------------------------------------------------------------------------------------------------
 // https://stackoverflow.com/questions/43121679/how-to-append-option-into-select-combo-box-in-d3
 // STRATEGY
 // Intialize Dashboard page
