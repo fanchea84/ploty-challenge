@@ -11,7 +11,11 @@ function DemographicData(id) {
         var demoPanel = d3.select("#sample-metadata");
         // Clear the Demographic Panel, to enable input of new Patient ID
         demoPanel.html("");
-    })
+        // Collect the Demographic Metadata for the selected Patient ID, and display it in the Demographic Panel
+        Object.entries(result).forEach((key) => {
+            demoPanel.append("h5").text(key[0].toUpperCase() + ": " + key[1] +"\n");
+        });
+    });
 }
 // Call DEMOGRAPHICDATA function
 DemographicData();
