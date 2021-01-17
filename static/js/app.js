@@ -1,16 +1,40 @@
 // Create DEMOGRAPHICDATA function to get the metadata for given patient ID
-function DemographicData() {
+function DemographicData(id) {
     // read SAMPLES.JSON file to get its data
     d3.json("samples.json").then((data)=> { 
         // Get metadata from SAMPLES.JSON. We'll use this info for the Demographic Panel visualization.
         var demographicmetadata = data.metadata;
         console.log(demographicmetadata);
         // Filter the Demographic Metadata for specific Patient ID
-        var filteredmetadata =  demographicmetadata.filter(meta => meta.id.toString() ===id)[0];
+        var result =  demographicmetadata.filter(meta => meta.id.toString() ===id)[0];
+        // Select the Demographic Panel from INDEX.HTML so you can put the selected Patient's demographic data in there
+        var demoPanel = d3.select("#sample-metadata");
     })
 }
 // Call DEMOGRAPHICDATA function
 DemographicData();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Create INIT function to populate dropdown menu with patient IDs (Patient IDs taken from "names" column in samples.json)
 function init() {
