@@ -7,6 +7,7 @@ function DemographicData(id) {
         console.log(demographicmetadata);
         // Filter the Demographic Metadata for specific Patient ID
         var result =  demographicmetadata.filter(meta => meta.id.toString() ===id)[0];
+        console.log(result);
         // Select the Demographic Panel from INDEX.HTML so you can put the selected Patient's demographic data in there
         var demoPanel = d3.select("#sample-metadata");
         // Clear the Demographic Panel, to enable input of new Patient ID
@@ -24,24 +25,6 @@ DemographicData();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Create INIT function to populate dropdown menu with patient IDs (Patient IDs taken from "names" column in samples.json)
 function init() {
     // get nested data -- chaining!
@@ -50,7 +33,9 @@ function init() {
         var dropdownlist = d3.select("#selDataset"); // Use D3 to select the table body from INDEX.HTML
         data.names.forEach(name => {
             dropdownlist.append("option").text(name);
-        })
+        });
+        // Call the DEMOGRAPHICDATA and CREATEPLOTS functions to display the data and plots on the webpage, with default data for first Patient ID in the SAMPLES.JSON dataset
+        DemographicData(data.names[0]);
     });
 }
 // Call INIT function
