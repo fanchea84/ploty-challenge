@@ -1,3 +1,18 @@
+// -----------------------------------------------------------------------------------------------------
+// Create CREATEDASHBOARD function to collect and display the metadata for a given Patient ID.
+// -----------------------------------------------------------------------------------------------------
+function CreateDashboard(id) {
+    // Read the SAMPLES.JSON file into D3 so you can work with its data to build tables & visualizations.
+    d3.json("samples.json").then (bellybuttondata =>{
+        console.log(bellybuttondata);
+
+    });
+}
+
+
+
+
+
 
 // -----------------------------------------------------------------------------------------------------
 // Create DEMOGRAPHICDATA function to collect and display the metadata for a given Patient ID.
@@ -34,8 +49,9 @@ function init() {
         data.names.forEach(name => {
             dropdownlist.append("option").text(name);
         });
-        // Call the DEMOGRAPHICDATA and CREATEPLOTS functions to display the data and plots on the webpage.
+        // Call the DEMOGRAPHICDATA and CREATEDASHBOARD functions to display the data and plots on the webpage.
         DemographicData(data.names[0]);
+        CreateDashboard(data.names[0]);
     });
 }
 // Call INIT function to initialize data on the page.
