@@ -31,8 +31,14 @@ function CreateDashboard(id) {
         // Create variable ID's and store in it the OTU_ID numbers from SAMPLES.JSON
         var ids = BellyButtonData.samples[0].otu_ids;
         console.log(ids);
+        // Create variabe BELLYBUTTONVALUES and store in it the top 10 values from SAMPLE_VALUES in the SAMPLE.JSON, sorted in ascending order 
+        // RESOURCE FOR SLICE & REVERSE METHODS: https://stackoverflow.com/questions/30610523/reverse-array-in-javascript-without-mutating-original-array
         var BellyButtonValues = BellyButtonData.samples[0].sample_values.slice(0,10).reverse();
         console.log(BellyButtonValues);
+        // Create a variable BELLYBUTTONLABELS for holding the labels of the top 10 values from SAMPLES.JSON
+        // Both BELLYBUTTONVALUES and BELLYBUTTONLABELS will be used to create plot(s) below
+        var BellyButtonLabels = BellyButtonData.samples[0].otu_ids.slice(0,10);
+        console.log(BellyButtonLabels);
 
     });
 }
