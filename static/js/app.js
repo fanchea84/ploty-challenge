@@ -42,8 +42,26 @@ function CreateDashboard(id) {
         console.log(OTU_top_ten);
         // Create variable OTU_TOP_ID and store in it string with the OTU IDs for top ten OTU's from SAMPLE.JSON.
         var OTU_top_id = OTU_top_ten.map(d => "OTU " + d);
-        console.log('OTU IDs: ${OTU_top_id}');
-        
+            // DELETE???
+            // console.log('OTU IDs: ${OTU_top_id}');
+        // Create variable TOPTENLABLES and store in it labels for our plot.
+        var TopTenLabels = BellyButtonData.samples[0].otu_labels.slice(0,10);
+        console.log(TopTenLabels);
+        // Create a TRACE for the horizontal bar plot.
+        var trace = {
+            x: BellyButtonValues,
+            y: OTU_top_id,
+            text: BellyButtonLabels,
+            marker: {
+                color: 'blue'},
+                type:"bar",
+                orientation: "h",
+            };
+        // Create DATA variable for holding the trace.
+        var data = [trace];
+        // Create LAYOUT variable to specify layout of the chart.
+        var 
+        };
 
     });
 }
@@ -74,9 +92,8 @@ init();
 // -----------------------------------------------------------------------------------------------------
 // RESOURCE FOR APPENDING TO DROP-DOWN MENU: https://stackoverflow.com/questions/43121679/how-to-append-option-into-select-combo-box-in-d3
 // RESOURCE FOR SLICE & REVERSE METHODS: https://stackoverflow.com/questions/30610523/reverse-array-in-javascript-without-mutating-original-array
-// -----------
+// RESOURCE FOR HORIZONTAL BAR CHARTS IN PLOTLY: https://plotly.com/javascript/horizontal-bar-charts/
 // STRATEGY
-// -----------
 // Intialize Dashboard page
 // 1. Establish default Test Subject ID 940 <== write a function for this
 // 2. Populdate dropdown with possible choices (Test Subject ID Numbers)
