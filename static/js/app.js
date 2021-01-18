@@ -103,6 +103,7 @@ function CreateDashboard(id) {
 function optionChanged(id) {
     CreateDashboard(id);
     DemographicData(id);
+    console.log(id);
 }
 // ------------------------------------------------------------------------------------------------------------------------
 // Create INIT function to populate dropdown menu with patient IDs (Patient IDs taken from "names" column in samples.json)
