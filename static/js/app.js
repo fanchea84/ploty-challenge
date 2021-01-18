@@ -47,7 +47,7 @@ function CreateDashboard(id) {
         // Create variable TOPTENLABLES and store in it labels for our plot.
         var TopTenLabels = BellyButtonData.samples[0].otu_labels.slice(0,10);
         console.log(TopTenLabels);
-        // Create a TRACE for the horizontal bar plot.
+        // Create a TRACE for the horizontal bar chart.
         var trace = {
             x: BellyButtonValues,
             y: OTU_top_id,
@@ -75,8 +75,17 @@ function CreateDashboard(id) {
         };
         // Create horizontal bar chart containing Top Ten OTU's
         Plotly.newPlot("bar", data, layout);
-        // Create bubble chart displaying each sample
-        
+        // Create a TRACE for the bubble chart.
+        var trace1 = {
+            x: BellyButtonData.samples[0].otu_ids,
+            y: BellyButtonData.samples[0].sample_values,
+            mode: "markers",
+            marker: {
+                size: BellyButtonData.samples[0].sample_values,
+                color: BellyButtonData.samples[0].otu_ids
+            },
+            text: BellyButtonData.samples[0].otu_labels
+        };
 
     });
 }
