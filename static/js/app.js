@@ -59,10 +59,20 @@ function CreateDashboard(id) {
             };
         // Create DATA variable for holding the trace.
         var data = [trace];
+        console.log(trace);
         // Create LAYOUT variable to specify layout of the chart.
-        var 
-        };
-
+        var Layout = {
+            title: "Top Ten OTU's",
+            yaxis:{
+                tickmode:"linear",
+            },
+            margin:{
+                l: 105,
+                r: 105,
+                t: 105,
+                b: 25
+            }
+        }
     });
 }
 
