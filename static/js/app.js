@@ -48,7 +48,7 @@ function CreateDashboard(id) {
         var TopTenLabels = BellyButtonData.samples[0].otu_labels.slice(0,10);
         console.log(TopTenLabels);
         // Create a TRACE for the horizontal bar chart.
-        var trace = {
+        var tracebarchart = {
             x: BellyButtonValues,
             y: OTU_top_id,
             text: BellyButtonLabels,
@@ -57,9 +57,9 @@ function CreateDashboard(id) {
                 type:"bar",
                 orientation: "h",
             };
-        // Create DATA variable for holding the trace.
-        var databarchart = [trace];
-        console.log(trace);
+        // Create DATA variable for storing the trace.
+        var databarchart = [tracebarchart];
+        console.log(tracebarchart);
         // Define layout parameters for the horizontal bar chart. 
         var layoutbarchart = {
             title: "Top Ten OTU's",
@@ -73,10 +73,10 @@ function CreateDashboard(id) {
                 b: 25
             }
         };
-        // Create horizontal bar chart containing Top Ten OTU's
+        // Create horizontal bar chart containing Top Ten OTU's.
         Plotly.newPlot("bar", databarchart, layoutbarchart);
         // Create a TRACE for the bubble chart.
-        var trace1 = {
+        var tracebubblechart = {
             x: BellyButtonData.samples[0].otu_ids,
             y: BellyButtonData.samples[0].sample_values,
             mode: "markers",
@@ -92,7 +92,10 @@ function CreateDashboard(id) {
             height: 700,
             width: 1100
         };
-        
+        // Create DATA1 variable for storing the trace.
+        var databubblechart = [tracebubblechart];
+        // Create bubble chart containing all samples for given Patient ID.
+        Plotly.newPlot("bubble", databubblechart, layoutbubblechart);
 
     });
 }
