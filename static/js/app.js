@@ -31,14 +31,19 @@ function CreateDashboard(id) {
         // Create variable ID's and store in it the OTU_ID numbers from SAMPLES.JSON
         var ids = BellyButtonData.samples[0].otu_ids;
         console.log(ids);
-        // Create variabe BELLYBUTTONVALUES and store in it the top 10 values from SAMPLE_VALUES in the SAMPLE.JSON, sorted in ascending order 
-        // RESOURCE FOR SLICE & REVERSE METHODS: https://stackoverflow.com/questions/30610523/reverse-array-in-javascript-without-mutating-original-array
+        // Create variabe BELLYBUTTONVALUES and store in it the first 10 SAMPLE_VALUES from SAMPLE.JSON.
         var BellyButtonValues = BellyButtonData.samples[0].sample_values.slice(0,10).reverse();
         console.log(BellyButtonValues);
-        // Create a variable BELLYBUTTONLABELS for holding the labels of the top 10 values from SAMPLES.JSON
-        // Both BELLYBUTTONVALUES and BELLYBUTTONLABELS will be used to create plot(s) below
+        // Create a variable BELLYBUTTONLABELS for holding the labels of the top 10 values from SAMPLES.JSON.
         var BellyButtonLabels = BellyButtonData.samples[0].otu_ids.slice(0,10);
         console.log(BellyButtonLabels);
+        // Create variable OTU_TOP_TEN and store in it the top ten OTU ID's from SAMPLE.JSON.
+        var OTU_top_ten = (BellyButtonData.samples[0].otu_ids.slice(0, 10)).reverse();
+        console.log(OTU_top_ten);
+        // Create variable OTU_TOP_ID and store in it string with the OTU IDs for top ten OTU's from SAMPLE.JSON.
+        var OTU_top_id = OTU_top_ten.map(d => "OTU " + d);
+        console.log('OTU IDs: ${OTU_top_id}');
+        
 
     });
 }
@@ -67,8 +72,11 @@ init();
 // -----------------------------------------------------------------------------------------------------
 // NOTES AND HINTS FROM CLASS, TUTORING, & SELF-GUIDED STUDY TIME.
 // -----------------------------------------------------------------------------------------------------
-// https://stackoverflow.com/questions/43121679/how-to-append-option-into-select-combo-box-in-d3
+// RESOURCE FOR APPENDING TO DROP-DOWN MENU: https://stackoverflow.com/questions/43121679/how-to-append-option-into-select-combo-box-in-d3
+// RESOURCE FOR SLICE & REVERSE METHODS: https://stackoverflow.com/questions/30610523/reverse-array-in-javascript-without-mutating-original-array
+// -----------
 // STRATEGY
+// -----------
 // Intialize Dashboard page
 // 1. Establish default Test Subject ID 940 <== write a function for this
 // 2. Populdate dropdown with possible choices (Test Subject ID Numbers)
