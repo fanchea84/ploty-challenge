@@ -1,6 +1,6 @@
-// -----------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------
 // Create DEMOGRAPHICDATA function to collect and display the metadata for a given Patient ID.
-// -----------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------
 function DemographicData(id) {
         // Read the SAMPLES.JSON file into D3 so you can work with its data to build tables & visualizations.
         d3.json("samples.json").then((data)=> {
@@ -20,10 +20,9 @@ function DemographicData(id) {
             });
         });
     }
-
-// -----------------------------------------------------------------------------------------------------
-// Create CREATEDASHBOARD function to collect and display the metadata for a given Patient ID.
-// -----------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------
+// Create CREATEDASHBOARD function to build horizontal bar chart & bubble plot displaying data for a given Patient ID.
+// ------------------------------------------------------------------------------------------------------------------------
 function CreateDashboard(id) {
     // Read the SAMPLES.JSON file into D3 so you can work with its data to build tables & visualizations.
     d3.json("samples.json").then (BellyButtonData =>{
@@ -42,8 +41,7 @@ function CreateDashboard(id) {
         console.log(OTU_top_ten);
         // Create variable OTU_TOP_ID and store in it string with the OTU IDs for top ten OTU's from SAMPLE.JSON.
         var OTU_top_id = OTU_top_ten.map(d => "OTU " + d);
-            // DELETE???
-            // console.log('OTU IDs: ${OTU_top_id}');
+        console.log(OTU_top_id);
         // Create variable TOPTENLABLES and store in it labels for our plot.
         var TopTenLabels = BellyButtonData.samples[0].otu_labels.slice(0,10);
         console.log(TopTenLabels);
@@ -99,11 +97,16 @@ function CreateDashboard(id) {
 
     });
 }
-
-
-// -----------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------
+// Create OPTIONCHANGE function to listen & handle for when the Patient ID input is changed by website viewer
+// ------------------------------------------------------------------------------------------------------------------------
+function optionChanged(id) {
+    CreateDashboard(id);
+    DemographicData(id);
+}
+// ------------------------------------------------------------------------------------------------------------------------
 // Create INIT function to populate dropdown menu with patient IDs (Patient IDs taken from "names" column in samples.json)
-// -----------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------
 function init() {
     // Read the SAMPLES.JSON file into D3 so you can work with its data to build tables & visualizations.
     d3.json("samples.json").then(function(data) {
@@ -127,6 +130,8 @@ init();
 // RESOURCE FOR APPENDING TO DROP-DOWN MENU: https://stackoverflow.com/questions/43121679/how-to-append-option-into-select-combo-box-in-d3
 // RESOURCE FOR SLICE & REVERSE METHODS: https://stackoverflow.com/questions/30610523/reverse-array-in-javascript-without-mutating-original-array
 // RESOURCE FOR HORIZONTAL BAR CHARTS IN PLOTLY: https://plotly.com/javascript/horizontal-bar-charts/
+// RESOURCE FOR PLOTLY CHARTS: https://plotly.com/javascript/
+// RESOURCE FOR OptionChanged: https://js.devexpress.com/Documentation/ApiReference/UI_Widgets/dxValidator/Configuration/#onOptionChanged
 // STRATEGY
 // Intialize Dashboard page
 // 1. Establish default Test Subject ID 940 <== write a function for this
