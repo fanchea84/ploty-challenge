@@ -53,7 +53,7 @@ function CreateDashboard(id) {
             y: OTU_top_id,
             text: BellyButtonLabels,
             marker: {
-                color: 'blue'},
+                color: 'light blue'},
                 type:"bar",
                 orientation: "h",
             };
@@ -61,7 +61,7 @@ function CreateDashboard(id) {
         var data = [trace];
         console.log(trace);
         // Create LAYOUT variable to specify layout of the chart.
-        var Layout = {
+        var layout = {
             title: "Top Ten OTU's",
             yaxis:{
                 tickmode:"linear",
@@ -72,7 +72,12 @@ function CreateDashboard(id) {
                 t: 105,
                 b: 25
             }
-        }
+        };
+        // Create horizontal bar chart containing Top Ten OTU's
+        Plotly.newPlot("bar", data, layout);
+        // Create bubble chart displaying each sample
+        
+
     });
 }
 
