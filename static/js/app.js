@@ -1,20 +1,4 @@
 // -----------------------------------------------------------------------------------------------------
-// Create CREATEDASHBOARD function to collect and display the metadata for a given Patient ID.
-// -----------------------------------------------------------------------------------------------------
-function CreateDashboard(id) {
-    // Read the SAMPLES.JSON file into D3 so you can work with its data to build tables & visualizations.
-    d3.json("samples.json").then (bellybuttondata =>{
-        console.log(bellybuttondata);
-
-    });
-}
-
-
-
-
-
-
-// -----------------------------------------------------------------------------------------------------
 // Create DEMOGRAPHICDATA function to collect and display the metadata for a given Patient ID.
 // -----------------------------------------------------------------------------------------------------
 function DemographicData(id) {
@@ -36,6 +20,23 @@ function DemographicData(id) {
             });
         });
     }
+
+// -----------------------------------------------------------------------------------------------------
+// Create CREATEDASHBOARD function to collect and display the metadata for a given Patient ID.
+// -----------------------------------------------------------------------------------------------------
+function CreateDashboard(id) {
+    // Read the SAMPLES.JSON file into D3 so you can work with its data to build tables & visualizations.
+    d3.json("samples.json").then (BellyButtonData =>{
+        console.log(BellyButtonData);
+        // Create variable ID's and store in it the OTU_ID numbers from SAMPLES.JSON
+        var ids = BellyButtonData.samples[0].otu_ids;
+        console.log(ids);
+        var BellyButtonValues = BellyButtonData.samples[0].sample_values.slice(0,10).reverse();
+        console.log(BellyButtonValues);
+
+    });
+}
+
 
 // -----------------------------------------------------------------------------------------------------
 // Create INIT function to populate dropdown menu with patient IDs (Patient IDs taken from "names" column in samples.json)
