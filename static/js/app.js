@@ -58,10 +58,10 @@ function CreateDashboard(id) {
                 orientation: "h",
             };
         // Create DATA variable for holding the trace.
-        var data = [trace];
+        var databarchart = [trace];
         console.log(trace);
-        // Create LAYOUT variable to specify layout of the chart.
-        var layout = {
+        // Define layout parameters for the horizontal bar chart. 
+        var layoutbarchart = {
             title: "Top Ten OTU's",
             yaxis:{
                 tickmode:"linear",
@@ -74,7 +74,7 @@ function CreateDashboard(id) {
             }
         };
         // Create horizontal bar chart containing Top Ten OTU's
-        Plotly.newPlot("bar", data, layout);
+        Plotly.newPlot("bar", databarchart, layoutbarchart);
         // Create a TRACE for the bubble chart.
         var trace1 = {
             x: BellyButtonData.samples[0].otu_ids,
@@ -86,6 +86,13 @@ function CreateDashboard(id) {
             },
             text: BellyButtonData.samples[0].otu_labels
         };
+        // Define layout parameters for the bubble chart.
+        var layoutbubblechart = {
+            xaxis:{title: "OTU ID"},
+            height: 700,
+            width: 1100
+        };
+        
 
     });
 }
